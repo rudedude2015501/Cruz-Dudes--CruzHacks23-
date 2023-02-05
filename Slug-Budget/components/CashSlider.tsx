@@ -2,61 +2,60 @@ import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Slider, Text, Icon } from '@rneui/themed';
 
-type SlidersComponentProps = {};
+type SlidersComponentProps = {
+  max: number;
+};
 
-const CashSlider: React.FunctionComponent<SlidersComponentProps> = () => {
-const [vertValue, setVertValue] = useState(0);
+const CashSlider: React.FunctionComponent<SlidersComponentProps> = (props: SlidersComponentProps) => {
+const [value, setValue] = useState(0);
 
 const interpolate = (start: number, end: number) => {
-  let k = (vertValue - 0) / 10; // 0 =>min  && 10 => MAX
+  let k = (value - 0) / 10; // 0 =>min  && 10 => MAX
   return Math.ceil((1 - k) * start + k * end) % 256;
 };
 
-const color = () => {
+/*const color = () => {
   let r = interpolate(255, 0);
   let g = interpolate(0, 255);
   let b = interpolate(0, 0);
-  return `rgb(${r},${g},${b})`;
-};
+  return Number.isNaN(r) ? `rgb(255, 0, 0)` : `rgb(${r},${g},${b})`;
+};*/
 
 return (
   <>
-    <Text style={styles.subHeader}>Horizontal Slider</Text>
-
-    <View style={styles.verticalContent}>
+    <View style={[styles.contentView]}>
       <Slider
-        value={vertValue}
-        onValueChange={setVertValue}
-        maximumValue={50}
-        minimumValue={20}
+        value={value}
+        onValueChange={setValue}
+        maximumValue={props.max}
+        minimumValue={0}
         step={1}
-        orientation="vertical"
-        thumbStyle={{ height: 20, width: 16, backgroundColor: 'transparent' }}
+        allowTouchTrack
+        trackStyle={{ height: 5, backgroundColor: 'transparent' }}
+        thumbStyle={{ height: 20, width: 20, backgroundColor: 'transparent' }}
         thumbProps={{
           children: (
             <Icon
               name="heartbeat"
               type="font-awesome"
-              size={50}
+              size={20}
               reverse
               containerStyle={{ bottom: 20, right: 20 }}
-              color="#f50"
+              color={`rgb(0, 255, 0)`}
             />
           ),
         }}
       />
+      <Text style={{ paddingTop: 20 }}>Value: {value}</Text>
     </View>
-    <Text style={{ paddingLeft: 25 }}>Value: {vertValue}</Text>
   </>
 );
 };
 
 const styles = StyleSheet.create({
-verticalContent: {
+contentView: {
   padding: 20,
-  flex: 1,
-  flexDirection: 'row',
-  height: 500,
+  width: '100%',
   justifyContent: 'center',
   alignItems: 'stretch',
 },
