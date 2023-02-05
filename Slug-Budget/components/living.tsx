@@ -4,12 +4,12 @@ import React, {useState} from 'react'
 
 function sub(first: string, second: string){
   var newone : number;
-  newone = Number(first)
+  newone = parseInt(first)
 
   var secondone: number;
-  secondone = Number(second)
+  secondone = parseInt(second)
 
-  return newone - secondone;
+  return secondone - newone;
 }
 
 type LivingProps = {
@@ -19,9 +19,9 @@ type LivingProps = {
 
 const LivingScreen = (p: LivingProps) => {
   const accountStatus = p.accountStatus;
-  const [text, setText] = useState(accountStatus['rent']);
+  const [text, setText] = useState(accountStatus['groceries']);
   const [text2, setText2] = useState(accountStatus['utilities']);
-  const [text3, setText3] = useState(accountStatus['groceries']);
+  const [text3, setText3] = useState(accountStatus['tuition']);
   const [text4, setText4] = useState(accountStatus['disposable']);
 
   return(
@@ -33,7 +33,7 @@ const LivingScreen = (p: LivingProps) => {
       <View style={styles.vertical}>
         <Text style={styles.leftHeader}>Groceries     </Text>
         <Divider orientation="vertical" width={5} />
-        <Text>Spent:{"\n"}Remaining:  </Text> 
+        <Text>Spent:{"\n"}Remaining: {sub(text, accountStatus['groceries'])} </Text> 
 
         <TextInput
         keyboardType='numeric'
@@ -54,7 +54,7 @@ const LivingScreen = (p: LivingProps) => {
       <View style={styles.vertical}>
         <Text style={styles.leftHeader}>Utilites          </Text>
         <Divider orientation="vertical" width={5} />
-        <Text>Spent:{"\n"}Remaining:  </Text>
+        <Text>Spent:{"\n"}Remaining:  {sub(text2, accountStatus['utilities'])}</Text>
 
         <TextInput
         keyboardType='numeric'
@@ -75,7 +75,7 @@ const LivingScreen = (p: LivingProps) => {
       <View style={styles.vertical}>
         <Text style={styles.leftHeader}>School          </Text>
         <Divider orientation="vertical" width={5} />
-        <Text>Spent:{"\n"}Remaining:  </Text>
+        <Text>Spent:{"\n"}Remaining: {sub(text3, accountStatus['tuition'])} </Text>
 
         <TextInput
         keyboardType='numeric'
@@ -96,7 +96,7 @@ const LivingScreen = (p: LivingProps) => {
       <View style={styles.vertical}>
         <Text style={styles.leftHeader}>Disposable  </Text>
         <Divider orientation="vertical" width={5} />
-        <Text>Spent:{"\n"}Remaining:  </Text>
+        <Text>Spent:{"\n"}Remaining: {sub(text4, accountStatus['disposable'])} </Text>
 
         <TextInput
         keyboardType='numeric'
