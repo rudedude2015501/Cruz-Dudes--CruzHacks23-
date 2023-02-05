@@ -12,11 +12,17 @@ function sub(first: string, second: string){
   return newone - secondone;
 }
 
-const LivingScreen = () => {
-  const [text, setText] = useState('');
-  const [text2, setText2] = useState('');
-  const [text3, setText3] = useState('');
-  const [text4, setText4] = useState('');
+type LivingProps = {
+  accountStatus: any;
+  setAccountStatus: any;
+};
+
+const LivingScreen = (p: LivingProps) => {
+  const accountStatus = p.accountStatus;
+  const [text, setText] = useState(accountStatus['rent']);
+  const [text2, setText2] = useState(accountStatus['utilities']);
+  const [text3, setText3] = useState(accountStatus['groceries']);
+  const [text4, setText4] = useState(accountStatus['disposable']);
 
   return(
     <ScrollView>
@@ -39,7 +45,7 @@ const LivingScreen = () => {
         }}
         placeholder="Type here"
         onChangeText={newText => setText(newText)}
-        defaultValue={text} 
+        value={text} 
       />
       </View>
 
@@ -60,7 +66,7 @@ const LivingScreen = () => {
         }}
         placeholder="Type here"
         onChangeText={newText2 => setText2(newText2)}
-        defaultValue={text2} 
+        value={text2} 
       />
       </View>
 
@@ -81,7 +87,7 @@ const LivingScreen = () => {
         }}
         placeholder="Type  here"
         onChangeText={newText3 => setText3(newText3)}
-        defaultValue={text3} 
+        value={text3} 
       />
       </View>
 
@@ -102,7 +108,7 @@ const LivingScreen = () => {
         }}
         placeholder="Type here"
         onChangeText={newText4 => setText4(newText4)}
-        defaultValue={text4} 
+        value={text4} 
       />
       </View>
 
