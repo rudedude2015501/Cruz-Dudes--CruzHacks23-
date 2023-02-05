@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
         fontSize: 40,
         padding: "10%",
         backgroundColor: "#2089dc",
+        color: "yellow",
         textAlign: "center",
         borderRadius: 100,
     },
