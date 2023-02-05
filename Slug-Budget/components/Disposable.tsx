@@ -16,17 +16,16 @@ export default function Disposable() {
     const [disposable, setDisposable] = useState("0");
 
     const fixedItems = [["Income", income, setIncome], ["Savings", savings, setSavings], ["Tuition", tuition, setTuition], ["Debt", debt, setDebt], ["Supplies", supplies, setSupplies], ["Rent", rent, setRent], ["Utilities", utilities, setUtilities], ["Groceries", groceries, setGroceries], ["Fun Money", disposable, setDebt]];
-    const scrollItems = ["School Supplies", "Rent", "Utilities", "Groceries", "Fun Money"];
     const listItems = fixedItems.map(function(item) { return (
-        <Input value={item[1]} onChangeText={(val) => (item[2] as any)(val)} style={styles.textInput} labelStyle={styles.textLabel} inputStyle={styles.inputStyle} textAlign={"left"} keyboardType="numeric" label={item[0]}></Input>
+        <Input value={item[1] as any} onChangeText={(val) => (item[2] as any)(val)} style={styles.textInput} labelStyle={styles.textLabel as any} inputStyle={styles.inputStyle} textAlign={"left"} keyboardType="numeric" label={item[0]}></Input>
     );});
     //const scrollListItems = scrollItems.map(function(item) { return <Text style={styles.body} key={item}>{item}</Text>; });
 
+    //let spendable = income.length ? Math.max(parseInt(income) - parseInt(savings) - parseInt(tuition) - parseInt(rent), 1) : 1;
     return (
         <ScrollView style={styles.body}>
             <Text style={styles.header}>Slug Money $_$</Text>
             {listItems}
-            
         </ScrollView>
     );
 }
