@@ -9,7 +9,7 @@ const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
 
-    const defaultState = {'income': '520', 'savings': '230', 'tuition': '11000','debt': '100000', 'supplies': '230', 'rent': '2000', 'utilities': '250', 'groceries': '300', 'disposable': '230'};
+    const defaultState = {income: '520', savings: '230', tuition: '11000',debt: '100000', supplies: '230', rent: '2000', utilities: '250', groceries: '300', disposable: '230'};
     const [accountStatus, setAccountStatus] = useState(defaultState);
     // const [income, setIncome] = useState("0");
     // const [savings, setSavings] = useState("0");
